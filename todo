@@ -1,0 +1,6 @@
+Accidentals in the source file need to be handled intelligently.  This 
+has escaped detection presumably because GHB scores almost never have 
+accidentals.  The only scores I'm aware of that include them are by 
+Gordon Duncan, particularly his arrangement of AC/DC's "Thunderstruck".  
+In that tune, three natural Fs appear.
+

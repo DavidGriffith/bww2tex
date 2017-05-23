@@ -201,9 +201,9 @@ char *abrcrunbr="\\backput{\\Downtext{'C}}";
 char *abrcrunm="\\backput{\\Downtext{C'}}";
 char *abrtrip="\\Downtext{3}";
 
-char *na="\\na";
-char *fl="\\fl";
-char *shp="\\shp";
+char *na="\\na ";
+char *fl="\\fl ";
+char *shp="\\shp ";
 
 char *fine="\\Uptext{\\it fine}";
 char *segno="\\segno h";

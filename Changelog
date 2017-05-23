@@ -1,0 +1,15 @@
+Summary of changes between bww2tex 2.00 and 2.01:
+=================================================
+
+bww2tex 2.01 was released on <date>
+
+- Makefile cleaned up and enhanced.
+
+- Tunes put in a subdirectory.
+
+- Corrected problem with accidentals in the score causing 
+  BagpipeTex and MusixTeX to choke.
+
+- Cleaned up help text.
+
+- Re-released with the GNU General Public License version 3.

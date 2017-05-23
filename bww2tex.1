@@ -1,0 +1,94 @@
+.\" -*- nroff -*-
+.TH BWW2TEX 1 2.01
+.SH NAME
+bww2tex \- convert from Bagpipe Music Writer Gold to BagpipeTex
+
+.SH SYNOPSIS
+.B bww2tex
+.RI [\fIinputfile\fR] "  [\fIoutputfile\fR]
+
+The extension .bww will be added to the input file name if .bmw or
+.bww is not already present.  The extension .tex will be added to the 
+output file name if not already present.
+
+If an output file name is not given, the input file name with .bww or
+.bmw replaced by .tex will be used.
+
+If no file names are given, stdin and stdout will be used.
+
+.SH DESCRIPTION
+.B bww2tex
+translates music in Bagpipe Music Writer [Gold] format to bagpipe.tex 
+format.  At least version 3.00 of Bagpipe.TeX is required.
+.P
+.B bww2tex
+is designed to translate BWW/BMW source as specified in the Bagpipe 
+Music Writer Gold help, or the BMWDM Version 5.0/BMWPS Version 2.0 
+manual. I infer from the archives that earlier BMW versions were more 
+tolerant of non-conforming code than this release. (Actually I think it 
+is that BMWDM is more tolerant than BMWPS or BMW gold). I have not found 
+it convenient to emulate all of these unknown (to me) abilities, but 
+have accommodated a few of the more common deviations. bww2tex is less 
+accomodating than bmw2tex. I have implemented the old symbols which have 
+new names so that both old and new symbols will work. This version 
+successfully parses all but a dozen of the tunes in the Peter Mohr and 
+Michael Bell collections and the sample tunes in the BMW Gold 
+distribution. The translated files (at least those free of blatant 
+copyright problems) are available on the Ceolas archive. The failing 
+input files have fairly gross errors (at least as they arrive on my 
+machine), e.g., no tabs whatsoever. I have only spot checked that the 
+files produced TeX properly.
+
+.SH CAUTION
+If the input director (<) is intended, but the output director (>) is 
+typed, the bmw file will be wiped out.  This can be avoided by using an 
+explicit file argument.
+
+.SH NOTES
+.B bww2tex
+does not add information that is not in the BWW/BMW source. For 
+example, it does not generate sloped beams. It also does not adjust the 
+spacing. Many strathspeys will have overfull hboxes when TeXed. See 
+bagdoc.tex for solutions for crowded music. There are a small number of 
+items which BWW/BMW does that MusicTeX does not. I have made reasonable 
+substitutions. The formatting instructions in BWW files are mostly 
+ignored. The font size is reduced to two sizes, and the landscape spec 
+is honored. bww2tex can't, of course, handle user defined BMW tokens. 
+musicsize16 (small music) is specified and the note spacing is set to a 
+minimal value. The TeX output may edited to improve the appearance of 
+tunes which do attempt to crowd the lines.
+.P
+Unrecognized tokens are echoed to the output between bagpipe.tex lines. 
+Recognized tokens in an unrecognized order cause the parser to fail and 
+drop the current line. Sometimes this is the fault of 
+.B bww2tex
+and sometimes of the BWW/BMW source. The most common cause is a missing 
+tab. Other problems I've seen in archived BMW tunes include missing 
+CLEFTs, missing spaces, missing line termination, missing beam (l,r) 
+characters, capitalization errors, and tokens between a note and its 
+dot.
+.P
+Once the input file has been parsed, the next question is will it TeX? 
+The most likely cause for a TeX failure is an unknown beamed group 
+macro. Often the only solution to this is to add the appropriate 
+definition to the TeX file. Sometimes the note grouping may be 
+rearranged so that an existing macro may be used. Another cause is a 
+beamed group of a single note. This can result an unknown macro or a 
+misused macro. These are usually due to errors in the BWW/BMW source, 
+either an inappropriate beam character or tabs in mid-beam.
+
+
+.SH BUGS
+If you find an error please email to me the offending source file and 
+anything you know about the error, for example the erroneous output 
+file. If the parse trace is on, the trace will be in the output file as 
+well.
+
+.SH AUTHOR
+.B bww2tex
+was written by Walt Innes (walt@slac.stanford.edu).
+.br
+This manpage was prepared by David Griffith (davidgriffith@acm.org)
+
+.SH "SEE ALSO"
+.BR musixtex (1)
