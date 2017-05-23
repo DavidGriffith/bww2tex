@@ -560,8 +560,8 @@ emb: EMBP       { $$ = $1; }
 tiebeat: TIEBEAT  { $$ = $1; }
        | TIE BEAT { $$ = $1; }
        | BEAT TIE { $$ = $2; }
-       | tiebeat BEAT { $$ = $1 }
-       | BEAT tiebeat { $$ = $2 }
+       | tiebeat BEAT { $$ = $1; }
+       | BEAT tiebeat { $$ = $2; }
        ;
  bar: BAR         { $$ = (char *) malloc(MAXLEN); strcpy($$,$1); }
     | BEAT bar    { $$ = $2; }
@@ -605,7 +605,7 @@ tiebeat: TIEBEAT  { $$ = $1; }
 tline: COMMENT { $$= (char *) malloc(MAXLEN);
                  strcat(strcpy($$,"%"),$1); free($1);
                }
-     | FORMAT  { $$ = $1 }
+     | FORMAT  { $$ = $1; }
      | text { $$ = (char *) malloc(MAXLEN);
                if( ntext != 4 || strlen($1) > 0)
                { if (ntext == 1) {strcat(strcat(strcpy($$,"\\line{\\moyen "),$1)," \\hss}\n"); free($1);}
@@ -697,19 +697,15 @@ int main (int argc, char **argv)
 
     if (argc > 1)   /* if a file was named, open it for reading*/
     {
-        if(! strncmp(argv[1],"help",4))
+        if(! strncmp(argv[1],"help",4) || ! strncmp(argv[1],"--help",4)
+		|| ! strncmp(argv[1],"-h",4))
         {
-            printf("%s",
-"bww2tex Version 2.01 by Walt Innes (walt@slac.stanford.edu)\n"
-"A filter for converting Bagpipe Music Writer [Gold] format score files\n"
-"to BagpipeTeX format.\n\n"
-"Syntax: bmw2tex [input] [output]\n\n"
-"The extension .bww will be added to the input file name if .bmw or\n"
-".bww is not already present.  The extension .tex will be added to the \n"
-"output file name if not already present.\n\n"
-"If an output file name is not given, the input file name with .bww or\n"
-".bmw replaced by .tex will be used.\n\n"
-"If no file names are given, stdin and stdout will be used.\n");
+            printf("usage: bmw2tex [ input [ output ] ]\n\n"
+"Bagpipe Music Writer Gold to BagpipeTeX converter.\n\n"
+"If an extension is not specified for the input file, \".bmw\" or \".bww\"\n"
+"will be assumed.  If an extension is not specified for the output file,\n"
+"\".tex\" is used.  If no file names are given, standard input and\n"
+"output are used.\n\n");
             exit(0);
               }
 
