@@ -9,6 +9,7 @@
 #include "y.tab.h"
 #include <string.h>
 #include <stdio.h>
+#include <unistd.h>
 #include "tokens.h"
 
 /* _WIN32 definition added for use with MS VC++ compiler. */
@@ -232,7 +233,7 @@ LREP (dalsegno|dacapoalfine|dacapoalcoda|_\'|bis_\')[ \a\n\t\r\f\v\b\032\xA]+
 {SEP}+[Hh][Gg]  { yylval=g  ; return THEME; }
 {SEP}+[Hh][Aa]  { yylval=hh ; return THEME; }
 
-{SEP}+"REST_1"  {yylval=pause ;       return REST; }
+{SEP}+"REST_1"  {yylval=_pause ;       return REST; }
 {SEP}+"REST_2"  {yylval=hpause ;      return REST; }
 {SEP}+"REST_4"  {yylval=soupir ;      return REST; }
 {SEP}+"REST_8"  {yylval=dsoupir ;     return REST; }
@@ -485,7 +486,7 @@ LREP (dalsegno|dacapoalfine|dacapoalcoda|_\'|bis_\')[ \a\n\t\r\f\v\b\032\xA]+
 
 %%
 
-yywrap(){return 1;}
+yywrap(){return (int)1;}
 
 char *addpit( char *yyt, size_t yyl, char *tok )
   { char *retptr;

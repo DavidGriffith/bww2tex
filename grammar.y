@@ -24,7 +24,6 @@
 #include <malloc.h>
 #endif
 
-
 int firstline=1, ntext=0, page, tiepend=0, tiearmed=0, lbhead;
 size_t prelen, nn;
 char num[2],den[2];
@@ -105,7 +104,7 @@ bline: bline ebarc { strcat($1,"\\notes");
                      printf("%s", strcat($1,$2)); free($1); free($2);
                      $$=malloc(MAXLEN); strcpy($$,reprmorceau);
                    }
-bline: bbline      {  $$ = $1
+bline: bbline      {  $$ = $1;
                    }
      | bline ebar ebarc { strcat($1,"\\notes");
                      if(tiearmed) { tiearmed=0; strcat($1,"\\tten0"); }
@@ -745,7 +744,7 @@ int main (int argc, char **argv)
 
 /* standard initial text output */
 printf("%s\n","%&bagpipe\n\\input bagpipe\n%");
-printf("%s\n","% Converted from bmw or bww format by bww2tex version 2.00\n%");
+printf("%s\n","% Converted from bmw or bww format by bww2tex version 2.01\n%");
 printf("%s\n","\\def\\freqbarno{9999}");
 printf("%s\n","\\maxlinesinpage=12\n%");
 printf("%s\n","\\ifx\\medleyflag\\relax\\else\n"

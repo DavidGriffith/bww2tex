@@ -1,5 +1,5 @@
 /* pointers to token semantic values for bww2tex
-   version 2.0
+   version 2.01
    by Walt Innes {walt@slac.stanford.edu)
 */
 extern char *reprmorceau;
@@ -175,7 +175,8 @@ extern char *totro;
 extern char *todro;
 extern char *tadela;
 
-extern char *pause;
+/* avoid function namespace conflict with pause(2) in unistd.h */
+extern char *_pause;
 extern char *hpause;
 extern char *soupir;
 extern char *dsoupir;
